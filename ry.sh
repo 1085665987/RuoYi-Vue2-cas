@@ -1,10 +1,10 @@
 #!/bin/sh
-# author ruoyi
+# author zhy
 # ./ry.sh start 启动
 # ./ry.sh stop 停止
 # ./ry.sh restart 重启
 # ./ry.sh status 状态
-AppName=ruoyi-admin.jar
+AppName=zhy-admin.jar
 
 # JVM参数
 JVM_OPTS="-Dname=$AppName  -Duser.timezone=Asia/Shanghai -Xms512M -Xmx512M -XX:PermSize=256M -XX:MaxPermSize=512M -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCDateStamps  -XX:+PrintGCDetails -XX:NewRatio=1 -XX:SurvivorRatio=30 -XX:+UseParallelGC -XX:+UseParallelOldGC"
@@ -38,7 +38,7 @@ function start()
 function stop()
 {
     echo "Stop $AppName"
-	
+
 	PID=""
 	query(){
 		PID=`ps -ef |grep java|grep $AppName|grep -v grep|awk '{print $2}'`

@@ -1,6 +1,6 @@
 #  项目简介
 
-此项目为RuoYi-Vue集成cas。
+此项目为Zhy-Vue集成cas。
 
 # 集成步骤
 
@@ -81,7 +81,7 @@ app:
  读取cas配置信息： 
 
 ~~~java
-package com.ruoyi.framework.config.properties;
+package com.zhy.framework.config.properties;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -183,14 +183,14 @@ public class CasProperties {
  在framework模块下添加： 
 
 ~~~java
-package com.ruoyi.framework.web.service;
+package com.zhy.framework.web.service;
 
-import com.ruoyi.common.core.domain.entity.SysUser;
-import com.ruoyi.common.core.domain.model.LoginUser;
-import com.ruoyi.common.enums.UserStatus;
-import com.ruoyi.common.exception.ServiceException;
-import com.ruoyi.common.utils.StringUtils;
-import com.ruoyi.system.service.ISysUserService;
+import com.zhy.common.core.domain.entity.SysUser;
+import com.zhy.common.core.domain.model.LoginUser;
+import com.zhy.common.enums.UserStatus;
+import com.zhy.common.exception.ServiceException;
+import com.zhy.common.utils.StringUtils;
+import com.zhy.system.service.ISysUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -244,12 +244,12 @@ public class CasUserDetailsService implements AuthenticationUserDetailsService<C
 在framework模块下添加：
 
 ~~~java
-package com.ruoyi.framework.security.handle;
+package com.zhy.framework.security.handle;
 
-import com.ruoyi.common.constant.Constants;
-import com.ruoyi.common.core.domain.model.LoginUser;
-import com.ruoyi.framework.config.properties.CasProperties;
-import com.ruoyi.framework.web.service.TokenService;
+import com.zhy.common.constant.Constants;
+import com.zhy.common.core.domain.model.LoginUser;
+import CasProperties;
+import TokenService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -319,11 +319,11 @@ public class CasAuthenticationSuccessHandler extends SavedRequestAwareAuthentica
  添加cas的处理逻辑： 
 
 ~~~java
-package com.ruoyi.framework.config;
+package com.zhy.framework.config;
 
-import com.ruoyi.framework.config.properties.CasProperties;
-import com.ruoyi.framework.security.handle.CasAuthenticationSuccessHandler;
-import com.ruoyi.framework.web.service.CasUserDetailsService;
+import CasProperties;
+import CasAuthenticationSuccessHandler;
+import CasUserDetailsService;
 import org.jasig.cas.client.session.SingleSignOutFilter;
 import org.jasig.cas.client.validation.Cas20ServiceTicketValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -345,14 +345,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.filter.CorsFilter;
-import com.ruoyi.framework.security.filter.JwtAuthenticationTokenFilter;
-import com.ruoyi.framework.security.handle.AuthenticationEntryPointImpl;
-import com.ruoyi.framework.security.handle.LogoutSuccessHandlerImpl;
+import JwtAuthenticationTokenFilter;
+import AuthenticationEntryPointImpl;
+import LogoutSuccessHandlerImpl;
 
 /**
  * spring security配置
  * 
- * @author ruoyi
+ * @author zhy
  */
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter
@@ -623,7 +623,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
 访问后端地址成功跳转cas登录页
 
-完整代码：[ RuoYi-Vue集成cas ](https://gitee.com/ggxforever/RuoYi-Vue-cas)
+完整代码：[ Zhy-Vue集成cas ](https://gitee.com/ggxforever/RuoYi-Vue-cas)
 
 ![1631356596644](https://gitee.com/ggxforever/ImageBed/raw/master/RuoYi-Vue-cas/1631356596644.png)
 
