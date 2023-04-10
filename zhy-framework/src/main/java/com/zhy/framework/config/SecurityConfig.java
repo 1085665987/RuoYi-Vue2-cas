@@ -118,6 +118,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                     .authorizeRequests()
                     // 对于登录login 注册register 验证码captchaImage 允许匿名访问
                     .antMatchers("/login", "/register", "/captchaImage").anonymous()
+                    // websocket请求也通行吧
+                    .antMatchers("/websocket/**").permitAll()
                     .antMatchers(
                             HttpMethod.GET,
                             "/",
@@ -159,6 +161,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                     .authorizeRequests()
                     // 对于登录login 验证码captchaImage 允许匿名访问
                     //.antMatchers("/login", "/captchaImage").anonymous()
+                    // websocket请求也通行吧
+                    .antMatchers("/websocket/**").permitAll()
                     .antMatchers(
                             HttpMethod.GET,
                             "/*.html",

@@ -50,6 +50,11 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/websocket',
+    component: (resolve) => require(['@/views/websocket'], resolve),
+    hidden: true
+  },
+  {
     path: '/404',
     component: (resolve) => require(['@/views/error/404'], resolve),
     hidden: true

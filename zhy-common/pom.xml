@@ -119,6 +119,12 @@
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
 
+        <!-- SpringBoot Websocket -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+
         <!-- spring security cas-->
         <dependency>
             <groupId>org.springframework.security</groupId>
