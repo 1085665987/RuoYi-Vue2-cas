@@ -2,8 +2,13 @@ package com.zhy.common.utils.file;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.Objects;
+
+import com.zhy.common.utils.uuid.Seq;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
+import com.zhy.common.config.MinioConfig;
 import com.zhy.common.config.ZhyConfig;
 import com.zhy.common.constant.Constants;
 import com.zhy.common.exception.file.FileNameLengthLimitExceededException;
@@ -11,7 +16,6 @@ import com.zhy.common.exception.file.FileSizeLimitExceededException;
 import com.zhy.common.exception.file.InvalidExtensionException;
 import com.zhy.common.utils.DateUtils;
 import com.zhy.common.utils.StringUtils;
-import com.zhy.common.utils.uuid.IdUtils;
 
 /**
  * 文件上传工具类
@@ -31,9 +35,14 @@ public class FileUploadUtils
     public static final int DEFAULT_FILE_NAME_LENGTH = 100;
 
     /**
-     * 默认上传的地址
+     * 本地默认上传的地址
      */
     private static String defaultBaseDir = ZhyConfig.getProfile();
+
+    /**
+     * Minio默认上传的地址
+     */
+    private static String bucketName = MinioConfig.getBucketName();
 
     public static void setDefaultBaseDir(String defaultBaseDir)
     {
@@ -43,6 +52,11 @@ public class FileUploadUtils
     public static String getDefaultBaseDir()
     {
         return defaultBaseDir;
+    }
+
+    public static String getBucketName()
+    {
+        return bucketName;
     }
 
     /**
@@ -100,7 +114,7 @@ public class FileUploadUtils
             throws FileSizeLimitExceededException, IOException, FileNameLengthLimitExceededException,
             InvalidExtensionException
     {
-        int fileNamelength = file.getOriginalFilename().length();
+        int fileNamelength = Objects.requireNonNull(file.getOriginalFilename()).length();
         if (fileNamelength > FileUploadUtils.DEFAULT_FILE_NAME_LENGTH)
         {
             throw new FileNameLengthLimitExceededException(FileUploadUtils.DEFAULT_FILE_NAME_LENGTH);
@@ -110,10 +124,69 @@ public class FileUploadUtils
 
         String fileName = extractFilename(file);
 
-        File desc = getAbsoluteFile(baseDir, fileName);
-        file.transferTo(desc);
-        String pathFileName = getPathFileName(baseDir, fileName);
-        return pathFileName;
+        String absPath = getAbsoluteFile(baseDir, fileName).getAbsolutePath();
+        file.transferTo(Paths.get(absPath));
+        return getPathFileName(baseDir, fileName);
+    }
+
+    /**
+     * 以默认BucketName配置上传到Minio服务器
+     *
+     * @param file 上传的文件
+     * @return 文件名称
+     * @throws Exception
+     */
+    public static final String uploadMinio(MultipartFile file) throws IOException
+    {
+        try
+        {
+            return uploadMinino(getBucketName(), file, MimeTypeUtils.DEFAULT_ALLOWED_EXTENSION);
+        }
+        catch (Exception e)
+        {
+            throw new IOException(e.getMessage(), e);
+        }
+    }
+
+    /**
+     * 自定义bucketName配置上传到Minio服务器
+     *
+     * @param file 上传的文件
+     * @return 文件名称
+     * @throws Exception
+     */
+    public static final String uploadMinio(MultipartFile file, String bucketName) throws IOException
+    {
+        try
+        {
+            return uploadMinino(bucketName, file, MimeTypeUtils.DEFAULT_ALLOWED_EXTENSION);
+        }
+        catch (Exception e)
+        {
+            throw new IOException(e.getMessage(), e);
+        }
+    }
+
+    private static final String uploadMinino(String bucketName, MultipartFile file, String[] allowedExtension)
+            throws FileSizeLimitExceededException, IOException, FileNameLengthLimitExceededException,
+            InvalidExtensionException
+    {
+        int fileNamelength = file.getOriginalFilename().length();
+        if (fileNamelength > FileUploadUtils.DEFAULT_FILE_NAME_LENGTH)
+        {
+            throw new FileNameLengthLimitExceededException(FileUploadUtils.DEFAULT_FILE_NAME_LENGTH);
+        }
+        assertAllowed(file, allowedExtension);
+        try
+        {
+            String fileName = extractFilename(file);
+            String pathFileName = MinioUtil.uploadFile(bucketName, fileName, file);
+            return pathFileName;
+        }
+        catch (Exception e)
+        {
+            throw new IOException(e.getMessage(), e);
+        }
     }
 
     /**
@@ -121,10 +194,8 @@ public class FileUploadUtils
      */
     public static final String extractFilename(MultipartFile file)
     {
-        String fileName = file.getOriginalFilename();
-        String extension = getExtension(file);
-        fileName = DateUtils.datePath() + "/" + IdUtils.fastUUID() + "." + extension;
-        return fileName;
+        return StringUtils.format("{}/{}_{}.{}", DateUtils.datePath(),
+                FilenameUtils.getBaseName(file.getOriginalFilename()), Seq.getId(Seq.uploadSeqType), getExtension(file));
     }
 
     public static final File getAbsoluteFile(String uploadDir, String fileName) throws IOException
@@ -145,8 +216,7 @@ public class FileUploadUtils
     {
         int dirLastIndex = ZhyConfig.getProfile().length() + 1;
         String currentDir = StringUtils.substring(uploadDir, dirLastIndex);
-        String pathFileName = Constants.RESOURCE_PREFIX + "/" + currentDir + "/" + fileName;
-        return pathFileName;
+        return Constants.RESOURCE_PREFIX + "/" + currentDir + "/" + fileName;
     }
 
     /**
@@ -161,7 +231,7 @@ public class FileUploadUtils
             throws FileSizeLimitExceededException, InvalidExtensionException
     {
         long size = file.getSize();
-        if (DEFAULT_MAX_SIZE != -1 && size > DEFAULT_MAX_SIZE)
+        if (size > DEFAULT_MAX_SIZE)
         {
             throw new FileSizeLimitExceededException(DEFAULT_MAX_SIZE / 1024 / 1024);
         }
@@ -195,7 +265,6 @@ public class FileUploadUtils
                 throw new InvalidExtensionException(allowedExtension, extension, fileName);
             }
         }
-
     }
 
     /**
@@ -228,7 +297,7 @@ public class FileUploadUtils
         String extension = FilenameUtils.getExtension(file.getOriginalFilename());
         if (StringUtils.isEmpty(extension))
         {
-            extension = MimeTypeUtils.getExtension(file.getContentType());
+            extension = MimeTypeUtils.getExtension(Objects.requireNonNull(file.getContentType()));
         }
         return extension;
     }

@@ -143,3 +143,12 @@ app:
   #前端登录地址
   web_url: http://127.0.0.1:80/index
 
+
+# Minio配置，集成minio分布式文件存储
+minio:
+  enable: true
+  url: http://120.48.105.59:9000
+  accessKey: minioadmin
+  secretKey: minioadmin
+  bucketName: zhy
+
