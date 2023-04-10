@@ -1,6 +1,6 @@
 @echo off
 echo.
-echo [��Ϣ] ʹ��Jar��������Web���̡�
+echo [信息] 运行Web工程，运行war/jar包文件。
 echo.
 
 cd %~dp0

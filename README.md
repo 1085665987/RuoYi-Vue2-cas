@@ -1,6 +1,6 @@
 #  项目简介
 
-此项目为Zhy-Vue集成cas。
+此项目基本框架SpringBoot-Vue，源自若依分离版基础框架，并集成cas、minio等组件。
 
 # 集成步骤
 
