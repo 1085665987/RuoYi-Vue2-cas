@@ -1,4 +1,4 @@
-package com.zhy.framework.websocket;
+package com.zhy.common.utils;
 
 import java.util.concurrent.Semaphore;
 import org.slf4j.Logger;

@@ -17,6 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+<!--        <tomcat.version>9.0.58</tomcat.version>-->
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
         <druid.version>1.2.6</druid.version>
         <bitwalker.version>1.21</bitwalker.version>
@@ -205,6 +206,13 @@
                 <version>${zhy.version}</version>
             </dependency>
 
+            <!-- 通用工具-->
+            <dependency>
+                <groupId>com.zhy</groupId>
+                <artifactId>zhy-selfdev</artifactId>
+                <version>${zhy.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -215,6 +223,7 @@
         <module>zhy-quartz</module>
         <module>zhy-generator</module>
         <module>zhy-common</module>
+        <module>zhy-selfdev</module>
     </modules>
     <packaging>pom</packaging>
 

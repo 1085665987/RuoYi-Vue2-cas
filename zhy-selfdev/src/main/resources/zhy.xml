@@ -1,0 +1,437 @@
+<?xml version="1.0"?>
+<mavlink>
+    <version>3</version>
+    <enums>
+        <enum name="MAV_CMD">
+            <description>指令</description>
+            <entry value="0" name="MAV_CMD_0">
+                <description>执行二维任务（平台未使用）</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="1" name="MAV_CMD_1">
+                <description>执行三维任务（旧）,现在平台执行三维任务使用action指令41</description>
+                <param index="1">actionParam</param>
+                <param index="2">data: { 航线JSON数据 }</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="2" name="MAV_CMD_2">
+                <description>暂停</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="3" name="MAV_CMD_3">
+                <description>恢复</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="4" name="MAV_CMD_4">
+                <description>终止</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="5" name="MAV_CMD_5">
+                <description>回程</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+            </entry>
+            <entry value="6" name="MAV_CMD_6">
+                <description>拍照</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="7" name="MAV_CMD_7">
+                <description>开始录像</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="8" name="MAV_CMD_8">
+                <description>结束录像</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="9" name="MAV_CMD_9">
+                <description>镜头切换</description>
+                <param index="1">镜头切换, 详情见 enum SHOT_CHANGE</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="10" name="MAV_CMD_10">
+                <description>云台上升</description>
+                <param index="1">actionParam：云台上升速度(1-100)</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="11" name="MAV_CMD_11">
+                <description>云台下降</description>
+                <param index="1">actionParam：云台下降速度(1-100)</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="12" name="MAV_CMD_12">
+                <description>云台向左</description>
+                <param index="1">actionParam：云台向左速度(1-100)</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="13" name="MAV_CMD_13">
+                <description>云台向右</description>
+                <param index="1">actionParam：云台向右速度(1-100)</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="14" name="MAV_CMD_14">
+                <description>云台轴向顺时针旋转(平台未使用)</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="15" name="MAV_CMD_15">
+                <description>云台轴向逆时针旋转(平台未使用)</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="16" name="MAV_CMD_16">
+                <description>云台复位</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="17" name="MAV_CMD_17">
+                <description>云台转动停止</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="18" name="MAV_CMD_18">
+                <description>云台调远，焦距放大</description>
+                <param index="1">actionParam：焦距放大速度(1-100)</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="19" name="MAV_CMD_19">
+                <description>云台拉近，焦距缩小</description>
+                <param index="1">actionParam：焦距缩小速度(1-100)</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="20" name="MAV_CMD_20">
+                <description>云台停止，停止焦距变化</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="21" name="MAV_CMD_21">
+                <description>云台控制(平台未使用)</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="22" name="MAV_CMD_22">
+                <description>取消回程，取消返航</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="23" name="MAV_CMD_23">
+                <description>开始跟随目标(平台未使用)</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="24" name="MAV_CMD_24">
+                <description>结束跟随目标(平台未使用)</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="25" name="MAV_CMD_25">
+                <description>开始直播</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="26" name="MAV_CMD_26">
+                <description>结束直播</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="27" name="MAV_CMD_27">
+                <description>机巢向服务器注册</description>
+                <param index="1">Empty</param>
+                <param index="2">data: {}</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="28" name="MAV_CMD_28">
+                <description>机巢准备</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="29" name="MAV_CMD_29">
+                <description>机巢复位</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="30" name="MAV_CMD_30">
+                <description>重启直播/修改飞机直播流媒体地址(未实现)</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="31" name="MAV_CMD_31">
+                <description>到达航点</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="32" name="MAV_CMD_32">
+                <description>机巢重启</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="33" name="MAV_CMD_33">
+                <description>msdk 手动飞行控制</description>
+                <param index="1">actionParam 1: 移动，0: 停止移动；</param>
+                <param index="2">Empty</param>
+                <param index="3">actionParam=1时: roll 移动速度，roll大于0前进, roll小于0后退</param>
+                <param index="4">actionParam=1时: pitch 移动速度，pitch大于0向右, pitch小于0向左</param>
+                <param index="5">actionParam=1时: verticalThrottle 移动速度，verticalThrottle大于0上升，verticalThrottle小于0下降
+                </param>
+                <param index="6">actionParam=1时: yaw 移动速度， yaw大于0右转，yaw小于0左转</param>
+            </entry>
+            <entry value="34" name="MAV_CMD_34">
+                <description>无人机起飞</description>
+                <param index="1">Empty</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+            <entry value="35" name="MAV_CMD_35">
+                <description>无人机降落</description>
+                <param index="1">actionParam 1 降落 2取消降落</param>
+                <param index="2">Empty</param>
+                <param index="3">Empty</param>
+                <param index="4">Empty</param>
+                <param index="5">Empty</param>
+                <param index="6">Empty</param>
+            </entry>
+        </enum>
+        <enum name="DEVICE_TYPE">
+            <description>MSDK-android:1，OSDK:2，机巢:3</description>
+            <entry value="1" name="DEVICE_TYPE_MSDK_ANDROID">
+                <description>MSDK-android</description>
+            </entry>
+            <entry value="2" name="DEVICE_TYPE_OSDK">
+                <description>OSDK</description>
+            </entry>
+            <entry value="3" name="DEVICE_TYPE_DEVICE">
+                <description>机巢</description>
+            </entry>
+        </enum>
+        <enum name="SOURCE_TYPE">
+            <description>来源类型：MSDK-android 1, OSDK 2, SERVER 3, webPage 4.</description>
+            <entry value="1" name="SOURCE_TYPE_MSDK_ANDROID">
+                <description>MSDK-android</description>
+            </entry>
+            <entry value="2" name="SOURCE_TYPE_OSDK">
+                <description>OSDK</description>
+            </entry>
+            <entry value="3" name="SOURCE_TYPE_SERVER">
+                <description>SERVER</description>
+            </entry>
+            <entry value="4" name="SOURCE_TYPE_WEB_PAGE">
+                <description>WEB页面</description>
+            </entry>
+        </enum>
+        <enum name="LOG_LEVEL">
+            <description>返回信息等级</description>
+            <entry value="0" name="LOG_LEVEL_INFO">
+                <description>INFO</description>
+            </entry>
+            <entry value="1" name="LOG_LEVEL_NOTICE">
+                <description>LOG_LEVEL_NOTICE</description>
+            </entry>
+            <entry value="2" name="LOG_LEVEL_WARNING">
+                <description>LOG_LEVEL_WARNING</description>
+            </entry>
+            <entry value="3" name="LOG_LEVEL_DEBUG">
+                <description>LOG_LEVEL_DEBUG</description>
+            </entry>
+            <entry value="4" name="LOG_LEVEL_ERROR">
+                <description>LOG_LEVEL_ERROR</description>
+            </entry>
+            <entry value="5" name="LOG_LEVEL_CRITICAL">
+                <description>LOG_LEVEL_CRITICAL，重要</description>
+            </entry>
+            <entry value="6" name="LOG_LEVEL_ALERT">
+                <description>LOG_LEVEL_ALERT，告警</description>
+            </entry>
+            <entry value="7" name="LOG_LEVEL_EMERGENCY">
+                <description>LOG_LEVEL_EMERGENCY，紧急</description>
+            </entry>
+        </enum>
+        <enum name="SHOT_CHANGE">
+            <description>镜头切换</description>
+            <entry value="-1" name="SHOT_CHANGE_LOOP">
+                <description>循环</description>
+            </entry>
+            <entry value="1" name="SHOT_CHANGE_VISIBLE_LIGHT">
+                <description>可见光</description>
+            </entry>
+            <entry value="2" name="SHOT_CHANGE_INFRARED">
+                <description>红外</description>
+            </entry>
+            <entry value="3" name="SHOT_CHANGE_BIFOCAL">
+                <description>双光</description>
+            </entry>
+            <entry value="4" name="SHOT_CHANGE_ZOOM">
+                <description>变焦(M300)</description>
+            </entry>
+        </enum>
+    </enums>
+    <messages>
+        <message id="236" name="ZHY_ORDER_COMMAND">
+            <description>平台端向机巢或无人机下发命令使用，接收发执行后需要用Log接口返回执行结果，服务端到移动端参数用ZHY_ORDER_COMMAND接口传输</description>
+            <field type="uint8_t" name="target_system">System which should execute the command</field>
+            <field type="uint8_t" name="target_component">Component which should execute the command, 0 for all components</field>
+            <field type="float" name="param1">pitch</field>
+            <field type="float" name="param2">yaw</field>
+            <field type="float" name="param3">roll</field>
+            <field type="float" name="param4">verticalThrottle</field>
+            <field type="uint8_t" name="param5" enum="MAV_CMD">action</field>
+            <field type="uint8_t" name="param6">actionParam</field>
+            <field type="uint8_t[240]" name="param7">data</field>
+        </message>
+        <message id="239" name="ZHY_OPERATION_LOG">
+            <description>安卓执行指令返回结果信息</description>
+            <field type="uint32_t" name="timestamp">时间戳</field>
+            <field type="uint8_t" name="source_type" enum="SOURCE_TYPE">来源类型，See SOURCE_TYPE enum</field>
+            <field type="uint8_t" name="action">执行指令</field>
+            <field type="uint8_t" name="log_levels" enum="LOG_LEVEL">返回信息等级. See LOG_LEVEL enum</field>
+            <field type="char[24]" name="time">时间</field>
+            <field type="char[1]" name="is_success">执行结果: 1 success, 0 failed</field>
+            <field type="char[170]" name="message">返回结果信息 根据action区别解析</field>
+            <field type="char[36]" name="device_id">设备id</field>
+        </message>
+        <message id="240" name="ZHY_DEVICE_REGISTRATION">
+            <description>安卓侧主动向平台发送注册信息，移动端到服务端参数接口用 ZHY_DEVICE_REGISTRATION 接口传输</description>
+            <field type="uint8_t" name="device_type" enum="DEVICE_TYPE">device type; MSDK-android:1 OSDK:2，机巢:3. See DEVICE_TYPE enum</field>
+            <field type="char[50]" name="device_id">Equipment unique identification code</field>
+            <field type="char[80]" name="device_name">device or airCaft name</field>
+            <field type="char[68]" name="aliases">别名 Device aliases user set,if any</field>
+        </message>
+    </messages>
+</mavlink>

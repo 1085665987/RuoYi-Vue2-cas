@@ -119,7 +119,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                     // 对于登录login 注册register 验证码captchaImage 允许匿名访问
                     .antMatchers("/login", "/register", "/captchaImage").anonymous()
                     // websocket请求也通行吧
-                    .antMatchers("/websocket/**").permitAll()
+                    .antMatchers("/websocket/androiduav/**").permitAll()
                     .antMatchers(
                             HttpMethod.GET,
                             "/",
@@ -136,7 +136,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                     .antMatchers("/webjars/**").anonymous()
                     .antMatchers("/*/api-docs").anonymous()
                     .antMatchers("/druid/**").anonymous()
-                    .antMatchers("/websocket/**").anonymous()
                     .antMatchers("/magic/web/**").anonymous()
                     // 除上面外的所有请求全部需要鉴权认证
                     .anyRequest().authenticated()
@@ -162,7 +161,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                     // 对于登录login 验证码captchaImage 允许匿名访问
                     //.antMatchers("/login", "/captchaImage").anonymous()
                     // websocket请求也通行吧
-                    .antMatchers("/websocket/**").permitAll()
+                    .antMatchers("/websocket/androiduav/**").permitAll()
                     .antMatchers(
                             HttpMethod.GET,
                             "/*.html",
@@ -179,7 +178,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                     .antMatchers("/webjars/**").anonymous()
                     .antMatchers("/*/api-docs").anonymous()
                     .antMatchers("/druid/**").anonymous()
-                    .antMatchers("/websocket/**").anonymous()
                     .antMatchers("/magic/web/**").anonymous()
                     // 除上面外的所有请求全部需要鉴权认证
                     .anyRequest().authenticated()

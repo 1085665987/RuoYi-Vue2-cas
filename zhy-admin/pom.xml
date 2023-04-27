@@ -61,6 +61,12 @@
             <artifactId>zhy-generator</artifactId>
         </dependency>
 
+        <!-- 自主研发机巢-->
+        <dependency>
+            <groupId>com.zhy</groupId>
+            <artifactId>zhy-selfdev</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

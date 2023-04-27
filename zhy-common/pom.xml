@@ -125,6 +125,12 @@
             <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
 
+        <!-- SpringBoot 拦截器 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
         <!-- spring security cas-->
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -136,6 +142,12 @@
             <groupId>io.minio</groupId>
             <artifactId>minio</artifactId>
             <version>8.2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>2.1.1</version>
         </dependency>
 
     </dependencies>

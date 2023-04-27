@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhy.selfdev.mapper.ZhySelfdevDeviceRegistrationMapper">
+
+    <resultMap type="ZhySelfdevDeviceRegistration" id="ZhySelfdevDeviceRegistrationResult">
+        <result property="deviceId"    column="DEVICE_ID"    />
+        <result property="deviceName"    column="DEVICE_NAME"    />
+        <result property="aliases"    column="ALIASES"    />
+        <result property="deviceType"    column="DEVICE_TYPE"    />
+        <result property="deviceIp"    column="DEVICE_IP"    />
+        <result property="time"    column="TIME"    />
+        <result property="status"    column="STATUS"    />
+        <result property="messageLogId"    column="MESSAGE_LOG_ID"    />
+    </resultMap>
+
+    <sql id="selectZhySelfdevDeviceRegistrationVo">
+        select DEVICE_ID, DEVICE_NAME, ALIASES, DEVICE_TYPE, DEVICE_IP, TIME, STATUS, MESSAGE_LOG_ID from zhy_selfdev_device_registration
+    </sql>
+
+    <select id="selectZhySelfdevDeviceRegistrationList" parameterType="ZhySelfdevDeviceRegistration" resultMap="ZhySelfdevDeviceRegistrationResult">
+        <include refid="selectZhySelfdevDeviceRegistrationVo"/>
+        <where>
+            <if test="deviceName != null  and deviceName != ''"> and DEVICE_NAME like concat('%', #{deviceName}, '%')</if>
+            <if test="aliases != null  and aliases != ''"> and ALIASES = #{aliases}</if>
+            <if test="deviceType != null  and deviceType != ''"> and DEVICE_TYPE = #{deviceType}</if>
+            <if test="deviceIp != null  and deviceIp != ''"> and DEVICE_IP = #{deviceIp}</if>
+            <if test="time != null "> and TIME = #{time}</if>
+            <if test="status != null  and status != ''"> and STATUS = #{status}</if>
+            <if test="messageLogId != null  and messageLogId != ''"> and MESSAGE_LOG_ID = #{messageLogId}</if>
+        </where>
+    </select>
+
+    <select id="selectZhySelfdevDeviceRegistrationByDeviceId" parameterType="String" resultMap="ZhySelfdevDeviceRegistrationResult">
+        <include refid="selectZhySelfdevDeviceRegistrationVo"/>
+        where DEVICE_ID = #{deviceId}
+    </select>
+
+    <insert id="insertZhySelfdevDeviceRegistration" parameterType="ZhySelfdevDeviceRegistration">
+        insert into zhy_selfdev_device_registration
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="deviceId != null">DEVICE_ID,</if>
+            <if test="deviceName != null">DEVICE_NAME,</if>
+            <if test="aliases != null">ALIASES,</if>
+            <if test="deviceType != null">DEVICE_TYPE,</if>
+            <if test="deviceIp != null">DEVICE_IP,</if>
+            <if test="time != null">TIME,</if>
+            <if test="status != null">STATUS,</if>
+            <if test="messageLogId != null">MESSAGE_LOG_ID,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="deviceId != null">#{deviceId},</if>
+            <if test="deviceName != null">#{deviceName},</if>
+            <if test="aliases != null">#{aliases},</if>
+            <if test="deviceType != null">#{deviceType},</if>
+            <if test="deviceIp != null">#{deviceIp},</if>
+            <if test="time != null">#{time},</if>
+            <if test="status != null">#{status},</if>
+            <if test="messageLogId != null">#{messageLogId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateZhySelfdevDeviceRegistration" parameterType="ZhySelfdevDeviceRegistration">
+        update zhy_selfdev_device_registration
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="deviceName != null">DEVICE_NAME = #{deviceName},</if>
+            <if test="aliases != null">ALIASES = #{aliases},</if>
+            <if test="deviceType != null">DEVICE_TYPE = #{deviceType},</if>
+            <if test="deviceIp != null">DEVICE_IP = #{deviceIp},</if>
+            <if test="time != null">TIME = #{time},</if>
+            <if test="status != null">STATUS = #{status},</if>
+            <if test="messageLogId != null">MESSAGE_LOG_ID = #{messageLogId},</if>
+        </trim>
+        where DEVICE_ID = #{deviceId}
+    </update>
+
+    <delete id="deleteZhySelfdevDeviceRegistrationByDeviceId" parameterType="String">
+        delete from zhy_selfdev_device_registration where DEVICE_ID = #{deviceId}
+    </delete>
+
+    <delete id="deleteZhySelfdevDeviceRegistrationByDeviceIds" parameterType="String">
+        delete from zhy_selfdev_device_registration where DEVICE_ID in
+        <foreach item="deviceId" collection="array" open="(" separator="," close=")">
+            #{deviceId}
+        </foreach>
+    </delete>
+</mapper>
