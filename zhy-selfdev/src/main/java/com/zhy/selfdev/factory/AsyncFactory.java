@@ -20,7 +20,7 @@ import java.util.TimerTask;
  */
 public class AsyncFactory
 {
-    private static final Logger uav_sys_user_logger = LoggerFactory.getLogger("uav-sys-user");
+    private static final Logger zhyuav_sys_user_logger = LoggerFactory.getLogger("zhyuav-sys-user");
 
     /**
      * 记录设备注册信息
@@ -66,7 +66,7 @@ public class AsyncFactory
                 registrationLog.setRegStatus(regStatus);
                 registrationLog.setRegContent(content);
                 // 日志存储
-                uav_sys_user_logger.info("接收到注册消息: {}", registrationLog.toString());
+                zhyuav_sys_user_logger.info("接收到注册消息: {}", registrationLog.toString());
                 // 保存入数据库
                 SpringUtils.getBean(IZhySelfdevDeviceRegistrationLogService.class).insertZhySelfdevDeviceRegistrationLog(registrationLog);
             }
@@ -89,7 +89,7 @@ public class AsyncFactory
                 Integer direction = messageLog.getDirection();
                 String direStr = MessageDirection.RECEIVE.ordinal() == direction ? "接收" : "发送";
                 // 日志存储
-                uav_sys_user_logger.info("{}消息: {}", direStr, messageLog.toString());
+                zhyuav_sys_user_logger.info("{}消息: {}", direStr, messageLog.toString());
                 // 保存入数据库
                 SpringUtils.getBean(IZhySelfdevMessageLogService.class).insertZhySelfdevMessageLog(messageLog);
             }
