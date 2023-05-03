@@ -145,7 +145,7 @@ public class MavLinkMessageLogAspect
     {
         Object[] args = joinPoint.getArgs();
         // 接收消息，只有一个入口
-        if (messageLog.getDirection() == MessageDirection.RECEIVE.ordinal())
+        // if (messageLog.getDirection() == MessageDirection.RECEIVE.ordinal())
         {
             String uid = (String)args[0];
             // 设置socket客户端ID

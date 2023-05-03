@@ -15,14 +15,12 @@ public class HeartbeatMessageHandler extends ReceivedMessageHandler{
     /**
      * 消费消息
      *
-     * @param uid
-     * @param message
+     * @param uid      socket客户端ID
+     * @param message  消息内容
      */
     @Override
     public void consumeMessage(String uid, byte[] message) {
         Packet<Message> messagePacket = Packet.readV1Packet(message);
-//        byte[] bytes = messagePacket.encodePacket(messagePacket.getMessageId());
-        //int sequence, int systemId, int componentId, int messageId, int crcExtra, byte[] payload) {
         byte[] bytes = Packet.createMavlink1Packet(
                 messagePacket.getSequence(),
                 messagePacket.getSystemId(),
@@ -31,6 +29,6 @@ public class HeartbeatMessageHandler extends ReceivedMessageHandler{
                 MavlinkConfig.getCrcBox().get(messagePacket.getMessageId()),
                 messagePacket.getPayload()
         ).getRawBytes();
-        System.out.println(Arrays.toString(bytes));
+        // TODO 心跳包消息处理
     }
 }
