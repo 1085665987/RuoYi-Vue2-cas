@@ -1,4 +1,4 @@
-package com.zhy.selfdev.domain;
+package com.zhy.datapersist.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zhy.common.annotation.Excel;
@@ -12,13 +12,13 @@ import java.util.Date;
  *
  * @author zhy
  */
-public class MavlinkMessageLog extends BaseEntity
+public class ZhySelfdevMessageLog extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
     /** 日志主键，32位UUID */
     @Excel(name = "消息序号")
-    private String logId;
+    private Long logId;
 
     /** 消息描述 */
     @Excel(name = "消息描述")
@@ -89,11 +89,11 @@ public class MavlinkMessageLog extends BaseEntity
     @Excel(name = "时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
-    public String getLogId() {
+    public Long getLogId() {
         return logId;
     }
 
-    public void setLogId(String logId) {
+    public void setLogId(Long logId) {
         this.logId = logId;
     }
 

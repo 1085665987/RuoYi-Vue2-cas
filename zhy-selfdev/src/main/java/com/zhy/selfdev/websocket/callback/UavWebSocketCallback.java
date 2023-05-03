@@ -16,7 +16,7 @@ public class UavWebSocketCallback implements IUavWebSocketCallback{
 
     private static Logger logger = LoggerFactory.getLogger(UavWebSocketCallback.class);
 
-    private final static String CLASS_NAME = UavWebSocketCallback.class.getName();
+    private final static String CLASS_NAME = UavWebSocketCallback.class.getSimpleName();
 
     /**
      * 连接成功监听

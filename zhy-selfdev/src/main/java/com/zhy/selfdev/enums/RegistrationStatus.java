@@ -1,4 +1,4 @@
-package com.zhy.selfdev.domain.enums;
+package com.zhy.selfdev.enums;
 
 public enum RegistrationStatus
 {

@@ -206,10 +206,24 @@
                 <version>${zhy.version}</version>
             </dependency>
 
-            <!-- 通用工具-->
+            <!-- 台账数据持久化-->
+            <dependency>
+                <groupId>com.zhy</groupId>
+                <artifactId>zhy-datapersist</artifactId>
+                <version>${zhy.version}</version>
+            </dependency>
+
+            <!-- 自研机巢对接-->
             <dependency>
                 <groupId>com.zhy</groupId>
                 <artifactId>zhy-selfdev</artifactId>
+                <version>${zhy.version}</version>
+            </dependency>
+
+            <!-- 复亚机巢对接-->
+            <dependency>
+                <groupId>com.zhy</groupId>
+                <artifactId>zhy-foia</artifactId>
                 <version>${zhy.version}</version>
             </dependency>
 
@@ -223,7 +237,9 @@
         <module>zhy-quartz</module>
         <module>zhy-generator</module>
         <module>zhy-common</module>
+        <module>zhy-datapersist</module>
         <module>zhy-selfdev</module>
+        <module>zhy-foia</module>
     </modules>
     <packaging>pom</packaging>
 

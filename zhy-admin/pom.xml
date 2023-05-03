@@ -67,6 +67,12 @@
             <artifactId>zhy-selfdev</artifactId>
         </dependency>
 
+        <!-- Foia机巢-->
+        <dependency>
+            <groupId>com.zhy</groupId>
+            <artifactId>zhy-foia</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -1,19 +1,19 @@
-package com.zhy.selfdev.mapper;
+package com.zhy.datapersist.mapper;
 
 import java.util.List;
-import com.zhy.selfdev.domain.ZhySelfdevDeviceRegistration;
+import com.zhy.datapersist.domain.ZhySelfdevDeviceRegistration;
 
 /**
  * 设备注册Mapper接口
- * 
+ *
  * @author zhy
  * @date 2023-04-22
  */
-public interface ZhySelfdevDeviceRegistrationMapper 
+public interface ZhySelfdevDeviceRegistrationMapper
 {
     /**
      * 查询设备注册
-     * 
+     *
      * @param deviceId 设备注册主键
      * @return 设备注册
      */
@@ -21,7 +21,7 @@ public interface ZhySelfdevDeviceRegistrationMapper
 
     /**
      * 查询设备注册列表
-     * 
+     *
      * @param zhySelfdevDeviceRegistration 设备注册
      * @return 设备注册集合
      */
@@ -29,7 +29,7 @@ public interface ZhySelfdevDeviceRegistrationMapper
 
     /**
      * 新增设备注册
-     * 
+     *
      * @param zhySelfdevDeviceRegistration 设备注册
      * @return 结果
      */
@@ -37,7 +37,7 @@ public interface ZhySelfdevDeviceRegistrationMapper
 
     /**
      * 修改设备注册
-     * 
+     *
      * @param zhySelfdevDeviceRegistration 设备注册
      * @return 结果
      */
@@ -45,7 +45,7 @@ public interface ZhySelfdevDeviceRegistrationMapper
 
     /**
      * 删除设备注册
-     * 
+     *
      * @param deviceId 设备注册主键
      * @return 结果
      */
@@ -53,7 +53,7 @@ public interface ZhySelfdevDeviceRegistrationMapper
 
     /**
      * 批量删除设备注册
-     * 
+     *
      * @param deviceIds 需要删除的数据主键集合
      * @return 结果
      */

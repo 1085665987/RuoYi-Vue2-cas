@@ -6,10 +6,11 @@ import com.zhy.common.utils.StringUtils;
 import com.zhy.common.utils.WebSocketUtils;
 import com.zhy.common.utils.uuid.UUID;
 import com.zhy.selfdev.annotation.MavLinkMessageLog;
-import com.zhy.selfdev.domain.MavlinkMessageLog;
-import com.zhy.selfdev.domain.enums.MessageDirection;
+import com.zhy.datapersist.domain.ZhySelfdevMessageLog;
+import com.zhy.selfdev.enums.MessageDirection;
 import com.zhy.selfdev.factory.AsyncFactory;
 import com.zhy.selfdev.mavlink.common.Message;
+import com.zhy.selfdev.mavlink.protocol.MavlinkConfig;
 import com.zhy.selfdev.mavlink.protocol.Packet;
 import com.zhy.selfdev.websocket.UavWebSocketUsers;
 import org.aspectj.lang.JoinPoint;
@@ -93,10 +94,8 @@ public class MavLinkMessageLogAspect
                 return;
             }
             // *========数据库日志=========*//
-            MavlinkMessageLog logEntity = new MavlinkMessageLog();
+            ZhySelfdevMessageLog logEntity = new ZhySelfdevMessageLog();
             logEntity.setStatus(BusinessStatus.SUCCESS.ordinal());
-            // 设置UUID
-            logEntity.setLogId(UUID.fastUUID().toString());
             // 设置时间
             logEntity.setCreateTime(new Date());
 
@@ -126,7 +125,7 @@ public class MavLinkMessageLogAspect
      * @param mavlinkMessageLog 消息日志
      * @throws Exception
      */
-    public void getControllerMethodDescription(JoinPoint joinPoint, MavLinkMessageLog log, MavlinkMessageLog mavlinkMessageLog) throws Exception
+    public void getControllerMethodDescription(JoinPoint joinPoint, MavLinkMessageLog log, ZhySelfdevMessageLog mavlinkMessageLog) throws Exception
     {
         // 设置标题
         mavlinkMessageLog.setTitle(log.title());
@@ -142,7 +141,7 @@ public class MavLinkMessageLogAspect
      * @param messageLog 操作日志
      * @throws Exception 异常
      */
-    private void setRequestValue(JoinPoint joinPoint, MavlinkMessageLog messageLog) throws Exception
+    private void setRequestValue(JoinPoint joinPoint, ZhySelfdevMessageLog messageLog) throws Exception
     {
         Object[] args = joinPoint.getArgs();
         // 接收消息，只有一个入口
@@ -175,11 +174,8 @@ public class MavLinkMessageLogAspect
             // 设置校验和低字节
             messageLog.setCka(messagePacket.getChecksum());
             // 设置校验和高字节
-            //messageLog.setCkb(messagePacket.getSignature());
+            messageLog.setCkb(Packet.generateCrc(message, MavlinkConfig.getCrcBox().get(messagePacket.getMessageId())));
         }
-        //String params = argsArrayToString(args);
-        //System.out.println(params.toString());
-        //System.out.println(Arrays.toString(args));
     }
 
     /**

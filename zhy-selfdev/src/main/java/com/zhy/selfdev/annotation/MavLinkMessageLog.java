@@ -1,6 +1,6 @@
 package com.zhy.selfdev.annotation;
 
-import com.zhy.selfdev.domain.enums.MessageDirection;
+import com.zhy.selfdev.enums.MessageDirection;
 
 import java.lang.annotation.*;
 

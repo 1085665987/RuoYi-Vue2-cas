@@ -9,10 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>zhy-selfdev</artifactId>
+    <artifactId>zhy-foia</artifactId>
 
     <description>
-        selfdev 自研机巢对接模块
+        复亚机巢对接模块
     </description>
 
     <dependencies>

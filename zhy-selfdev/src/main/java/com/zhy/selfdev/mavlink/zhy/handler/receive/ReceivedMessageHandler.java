@@ -1,7 +1,7 @@
 package com.zhy.selfdev.mavlink.zhy.handler.receive;
 
 import com.zhy.selfdev.annotation.MavLinkMessageLog;
-import com.zhy.selfdev.domain.enums.MessageDirection;
+import com.zhy.selfdev.enums.MessageDirection;
 
 /**
  * 公共处理接口

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhy.datapersist.mapper.ZhySelfdevDeviceRegistrationLogMapper">
+
+    <resultMap type="ZhySelfdevDeviceRegistrationLog" id="ZhySelfdevDeviceRegistrationLogResult">
+        <result property="logId"    column="LOG_ID"    />
+        <result property="deviceId"    column="DEVICE_ID"    />
+        <result property="deviceName"    column="DEVICE_NAME"    />
+        <result property="aliases"    column="ALIASES"    />
+        <result property="deviceType"    column="DEVICE_TYPE"    />
+        <result property="deviceIp"    column="DEVICE_IP"    />
+        <result property="time"    column="TIME"    />
+        <result property="status"    column="STATUS"    />
+        <result property="messageLogId"    column="MESSAGE_LOG_ID"    />
+        <result property="regStatus"    column="REG_STATUS"    />
+        <result property="regContent"    column="REG_CONTENT"    />
+        <result property="createTime"    column="CREATE_TIME"    />
+    </resultMap>
+
+    <sql id="selectZhySelfdevDeviceRegistrationLogVo">
+        select LOG_ID, DEVICE_ID, DEVICE_NAME, ALIASES, DEVICE_TYPE, DEVICE_IP, TIME, STATUS, MESSAGE_LOG_ID,
+               REG_STATUS, REG_CONTENT, CREATE_TIME
+        from zhy_selfdev_device_registration_log
+    </sql>
+
+    <select id="selectZhySelfdevDeviceRegistrationLogList"
+            parameterType="ZhySelfdevDeviceRegistrationLog" resultMap="ZhySelfdevDeviceRegistrationLogResult">
+        <include refid="selectZhySelfdevDeviceRegistrationLogVo"/>
+        <where>
+            <if test="deviceId != null  and deviceId != ''"> and DEVICE_ID = #{deviceId}</if>
+            <if test="deviceName != null  and deviceName != ''"> and DEVICE_NAME like concat('%', #{deviceName}, '%')</if>
+            <if test="aliases != null  and aliases != ''"> and ALIASES = #{aliases}</if>
+            <if test="deviceType != null  and deviceType != ''"> and DEVICE_TYPE = #{deviceType}</if>
+            <if test="deviceIp != null  and deviceIp != ''"> and DEVICE_IP = #{deviceIp}</if>
+            <if test="time != null "> and TIME = #{time}</if>
+            <if test="status != null  and status != ''"> and STATUS = #{status}</if>
+            <if test="messageLogId != null  and messageLogId != ''"> and MESSAGE_LOG_ID = #{messageLogId}</if>
+            <if test="regStatus != null  and regStatus != ''"> and REG_STATUS = #{regStatus}</if>
+            <if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
+                and date_format(create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+            </if>
+            <if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
+                and date_format(create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectZhySelfdevDeviceRegistrationLogByLogId" parameterType="Integer" resultMap="ZhySelfdevDeviceRegistrationLogResult">
+        <include refid="selectZhySelfdevDeviceRegistrationLogVo"/>
+        where LOG_ID = #{logId}
+    </select>
+
+    <insert id="insertZhySelfdevDeviceRegistrationLog" parameterType="ZhySelfdevDeviceRegistrationLog">
+        insert into zhy_selfdev_device_registration_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="deviceId != null">DEVICE_ID,</if>
+            <if test="deviceName != null">DEVICE_NAME,</if>
+            <if test="aliases != null">ALIASES,</if>
+            <if test="deviceType != null">DEVICE_TYPE,</if>
+            <if test="deviceIp != null">DEVICE_IP,</if>
+            <if test="time != null">TIME,</if>
+            <if test="status != null">STATUS,</if>
+            <if test="messageLogId != null">MESSAGE_LOG_ID,</if>
+            <if test="regStatus != null">REG_STATUS,</if>
+            <if test="regContent != null">REG_CONTENT,</if>
+            <if test="createTime != null">CREATE_TIME,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="deviceId != null">#{deviceId},</if>
+            <if test="deviceName != null">#{deviceName},</if>
+            <if test="aliases != null">#{aliases},</if>
+            <if test="deviceType != null">#{deviceType},</if>
+            <if test="deviceIp != null">#{deviceIp},</if>
+            <if test="time != null">#{time},</if>
+            <if test="status != null">#{status},</if>
+            <if test="messageLogId != null">#{messageLogId},</if>
+            <if test="regStatus != null">#{regStatus},</if>
+            <if test="regContent != null">#{regContent},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <delete id="deleteZhySelfdevDeviceRegistrationLogByLogId" parameterType="Integer">
+        delete from zhy_selfdev_device_registration_log where LOG_ID = #{logId}
+    </delete>
+
+    <delete id="deleteZhySelfdevDeviceRegistrationLogByLogIds" parameterType="Integer">
+        delete from zhy_selfdev_device_registration_log where LOG_ID in
+        <foreach item="logId" collection="array" open="(" separator="," close=")">
+            #{logId}
+        </foreach>
+    </delete>
+</mapper>

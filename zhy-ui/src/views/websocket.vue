@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-input v-model="url" type="text" style="width: 20%" /> &nbsp; &nbsp;
+    <el-input v-model="url" type="text" style="width: 40%" /> &nbsp; &nbsp;
     <el-button @click="join" type="primary">连接</el-button>
     <el-button @click="exit" type="danger">断开</el-button>
 
@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      url: "ws://127.0.0.1:8080/websocket/message",
+      url: "ws://127.0.0.1:8080/websocket/androiduav/12345",
       message: "",
       text_content: "",
       ws: null,

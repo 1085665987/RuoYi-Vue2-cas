@@ -1,11 +1,11 @@
-package com.zhy.selfdev.service.impl;
+package com.zhy.datapersist.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.zhy.selfdev.mapper.ZhySelfdevDeviceRegistrationMapper;
-import com.zhy.selfdev.domain.ZhySelfdevDeviceRegistration;
-import com.zhy.selfdev.service.IZhySelfdevDeviceRegistrationService;
+import com.zhy.datapersist.mapper.ZhySelfdevDeviceRegistrationMapper;
+import com.zhy.datapersist.domain.ZhySelfdevDeviceRegistration;
+import com.zhy.datapersist.service.IZhySelfdevDeviceRegistrationService;
 
 /**
  * 设备注册Service业务层处理

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhy.datapersist.mapper.ZhySelfdevMessageLogMapper">
+
+    <resultMap type="ZhySelfdevMessageLog" id="ZhySelfdevMessageLogResult">
+        <result property="logId"              column="LOG_ID"          />
+        <result property="title"              column="TITLE"           />
+        <result property="direction"          column="DIRECTION"       />
+        <result property="uid"                column="UID"             />
+        <result property="messageContent"     column="MESSAGE_CONTENT" />
+        <result property="stx"                column="STX"             />
+        <result property="len"                column="LEN"             />
+        <result property="seq"                column="SEQ"             />
+        <result property="sysId"              column="SYS_ID"          />
+        <result property="compId"             column="COMP_ID"         />
+        <result property="msgId"              column="MSG_ID"          />
+        <result property="payload"            column="PAY_LOAD"        />
+        <result property="cka"                column="CKA"             />
+        <result property="ckb"                column="CKB"             />
+        <result property="clientIp"           column="CLIENT_IP"       />
+        <result property="status"             column="STATUS"          />
+        <result property="errorMsg"           column="ERROR_MSG"       />
+        <result property="createTime"         column="CREATE_TIME"     />
+    </resultMap>
+
+    <sql id="selectZhySelfdevMessageLogVo">
+        select LOG_ID, TITLE, UID, MESSAGE_CONTENT, STX, LEN, SEQ, SYS_ID, COMP_ID, MSG_ID, PAY_LOAD,
+               CKA, CKB, CLIENT_IP, STATUS, ERROR_MSG, CREATE_TIME
+        from zhy_selfdev_message_log
+    </sql>
+
+    <select id="selectZhySelfdevMessageLogList"
+            parameterType="ZhySelfdevMessageLog" resultMap="ZhySelfdevMessageLogResult">
+        <include refid="selectZhySelfdevMessageLogVo"/>
+        <where>
+            <if test="uid != null  and uid != ''"> and UID = #{uid}</if>
+            <if test="clientIp != null  and clientIp != ''"> and CLIENT_IP = #{clientIp}</if>
+            <if test="status != null  and status != ''"> and STATUS = #{status}</if>
+            <if test="msgId != null  and msgId != ''"> and MSG_ID = #{msgId}</if>
+            <if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
+                and date_format(create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+            </if>
+            <if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
+                and date_format(create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectZhySelfdevMessageLogByLogId" parameterType="Integer" resultMap="ZhySelfdevMessageLogResult">
+        <include refid="selectZhySelfdevMessageLogVo"/>
+        where LOG_ID = #{logId}
+    </select>
+
+    <insert id="insertZhySelfdevMessageLog" parameterType="ZhySelfdevMessageLog">
+        insert into zhy_selfdev_message_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">TITLE,</if>
+            <if test="direction != null">DIRECTION,</if>
+            <if test="uid != null">UID,</if>
+            <if test="messageContent != null">MESSAGE_CONTENT,</if>
+            <if test="stx != null">STX,</if>
+            <if test="len != null">LEN,</if>
+            <if test="seq != null">SEQ,</if>
+            <if test="sysId != null">SYS_ID,</if>
+            <if test="compId != null">COMP_ID,</if>
+            <if test="msgId != null">MSG_ID,</if>
+            <if test="payload != null">PAY_LOAD,</if>
+            <if test="cka != null">CKA,</if>
+            <if test="ckb != null">CKB,</if>
+            <if test="clientIp != null">CLIENT_IP,</if>
+            <if test="status != null">STATUS,</if>
+            <if test="errorMsg != null">ERROR_MSG,</if>
+            <if test="createTime != null">CREATE_TIME,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null">#{title},</if>
+            <if test="direction != null">#{direction},</if>
+            <if test="uid != null">#{uid},</if>
+            <if test="messageContent != null">#{messageContent},</if>
+            <if test="stx != null">#{stx},</if>
+            <if test="len != null">#{len},</if>
+            <if test="seq != null">#{seq},</if>
+            <if test="sysId != null">#{sysId},</if>
+            <if test="compId != null">#{compId},</if>
+            <if test="msgId != null">#{msgId},</if>
+            <if test="payload != null">#{payload},</if>
+            <if test="cka != null">#{cka},</if>
+            <if test="ckb != null">#{ckb},</if>
+            <if test="clientIp != null">#{clientIp},</if>
+            <if test="status != null">#{status},</if>
+            <if test="errorMsg != null">#{errorMsg},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <delete id="deleteZhySelfdevMessageLogByLogId" parameterType="Integer">
+        delete from zhy_selfdev_message_log where LOG_ID = #{logId}
+    </delete>
+
+    <delete id="deleteZhySelfdevMessageLogByLogIds" parameterType="Integer">
+        delete from zhy_selfdev_message_log where LOG_ID in
+        <foreach item="logId" collection="array" open="(" separator="," close=")">
+            #{logId}
+        </foreach>
+    </delete>
+</mapper>

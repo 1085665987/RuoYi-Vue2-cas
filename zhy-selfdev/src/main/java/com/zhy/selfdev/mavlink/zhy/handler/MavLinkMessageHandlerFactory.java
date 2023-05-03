@@ -7,13 +7,13 @@ import com.zhy.selfdev.mavlink.zhy.handler.receive.ZhyOperationLogMessageHandler
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class MavLinkMessageHandlerFactory {
 
-    private static Map<Integer, ReceivedMessageHandler> messageHandlerMap = new HashMap<>();
+    private static Map<Integer, ReceivedMessageHandler> messageHandlerMap = new ConcurrentHashMap<>();
 
     @Autowired
     public void setHeartbeatMessageHandler(HeartbeatMessageHandler handler){
