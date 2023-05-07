@@ -401,8 +401,44 @@
                 <description>变焦(M300)</description>
             </entry>
         </enum>
+        <enum name="DOOR_STATE">
+            <description>机巢舱门状态</description>
+            <entry value="0" name="DOOR_STATE_CLOSED">
+                <description>关盖</description>
+            </entry>
+            <entry value="1" name="DOOR_STATE_VISIBLE_OPEN">
+                <description>开盖</description>
+            </entry>
+            <entry value="2" name="DOOR_STATE_OPENING">
+                <description>开盖中</description>
+            </entry>
+            <entry value="3" name="DOOR_STATE_CLOSING">
+                <description>关盖中</description>
+            </entry>
+        </enum>
     </enums>
     <messages>
+        <message id="235" name="ZHY_NEST_STATUS">
+            <description>安卓端定时向平台推送机巢状态数据，移动端到服务端参数 用 ZHY_NEST_STATUS接口传输</description>
+            <field type="char[50]" name="device_id">设备id</field>
+            <field type="uint32_t" name="timestamp">时间戳</field>
+            <field type="float" name="nestTemp">机巢温度</field>
+            <field type="float" name="nestHumidity">机巢湿度</field>
+            <field type="float" name="pressure">传感器气压</field>
+            <field type="float" name="rain_fall">传感器雨量</field>
+            <field type="float" name="humidity">传感器湿度</field>
+            <field type="uint8_t" name="windspeed">传感器风速</field>
+            <field type="uint8_t" name="wind_heading">风向</field>
+            <field type="uint8_t" name="temperature_air">传感器温度</field>
+            <field type="char[1]" name="is_connect_aircaft">是否连接无人机 1连接 0未连接</field>
+            <field type="char[128]" name="aircaft_name">无人机名称</field>
+            <field type="char[1]" name="doorState" enum="DOOR_STATE">机巢舱门状态 0关盖 1开关 2开盖中 3关盖中</field>
+            <field type="char[1]" name="closedoor">(暂时不用)</field>
+            <field type="char[1]" name="charge">机巢充电  1打开 0关闭</field>
+            <field type="char[1]" name="cooling">机巢降温  1打开 0关闭</field>
+            <field type="char[1]" name="heat">机巢加热  1打开 0关闭</field>
+            <field type="char[1]" name="remotStatus">遥控器开关状态  1打开 0关闭</field>
+        </message>
         <message id="236" name="ZHY_ORDER_COMMAND">
             <description>平台端向机巢或无人机下发命令使用，接收发执行后需要用Log接口返回执行结果，服务端到移动端参数用ZHY_ORDER_COMMAND接口传输</description>
             <field type="uint8_t" name="target_system">System which should execute the command</field>
